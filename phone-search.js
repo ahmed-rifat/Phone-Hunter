@@ -1,18 +1,26 @@
 const loadPhone= () =>{
     document.getElementById('phone-list-container').innerHTML="";
     const inputValue = document.getElementById('inputValue').value;
+    if(inputValue != "oppo" && inputValue != "iphone" && inputValue != "huawei"){
+        alert('Phone not found');
+    } else{
     const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`;
     fetch(url)
     .then(res => res.json())
     .then(data => displayPhone(data.data));
-    // data.data.slice(0,19);
+  
+    // inputValue.data.slice(0,19);
+    // if(inputValue==data){
+    //     alert('phone not found');
+   
+       }
     
 
 }
 
 const displayPhone = (phones)=>{
-    for (const phone of phones){
-        const inputValue = document.getElementById('inputValue').value; 
+    const slice =phones.slice(0,20);
+    for (const phone of slice){
         const phoneListContainer = document.getElementById('phone-list-container');
         const div = document.createElement('div');
         div.innerHTML = `

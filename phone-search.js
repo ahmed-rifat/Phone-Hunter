@@ -12,6 +12,7 @@ const loadPhone= () =>{
 
 const displayPhone = (phones)=>{
     for (const phone of phones){
+        const inputValue = document.getElementById('inputValue').value; 
         const phoneListContainer = document.getElementById('phone-list-container');
         const div = document.createElement('div');
         div.innerHTML = `
@@ -53,7 +54,7 @@ const displayPhone = (phones)=>{
    <p>${info.mainFeatures.storage},${info.mainFeatures.memory},${info.mainFeatures.displaySize},${info.mainFeatures.chipSet} </p>
    <p>Sensor: ${info.mainFeatures.sensors}</p>
    <p> Others: ${info.others.WLAN},${info.others.Bluetooth},${info.others.GPS},${info.others.USB}</p>
-   <p> ${info.releaseDate}</p>
+   <p> ${info.releaseDate ? info.releaseDate:'Coming soon' }</p>
  
  <button onclick ="closeButton()" type="button" class="btn btn-secondary" id="close-btn">Close</button>
 

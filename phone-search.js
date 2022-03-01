@@ -5,6 +5,7 @@ const loadPhone= () =>{
     fetch(url)
     .then(res => res.json())
     .then(data => displayPhone(data.data));
+    // data.data.slice(0,19);
     
 
 }
@@ -34,6 +35,7 @@ const displayPhone = (phones)=>{
 }
 
  const detailsShow = (slugId) =>{
+     document.getElementById('collapse-id-info').innerHTML= "";
     const url = `
     https://openapi.programming-hero.com/api/phone/${slugId}
     `;
@@ -47,9 +49,13 @@ const displayPhone = (phones)=>{
    const collapseIdInfo = document.getElementById('collapse-id-info');
    const collapseDiv = document.createElement('div');
    collapseDiv.innerHTML=`
-   <div class="card card-body"  style="width: 300px;">
+   <div class="card card-body" id="close-btn" style="width: 300px;">
    <p>${info.mainFeatures.storage},${info.mainFeatures.memory},${info.mainFeatures.displaySize},${info.mainFeatures.chipSet} </p>
+   <p>Sensor: ${info.mainFeatures.sensors}</p>
+   <p> Others: ${info.others.WLAN},${info.others.Bluetooth},${info.others.GPS},${info.others.USB}</p>
    <p> ${info.releaseDate}</p>
+ 
+ <button onclick ="closeButton()" type="button" class="btn btn-secondary" id="close-btn">Close</button>
 
  </div>
    `
@@ -57,3 +63,11 @@ const displayPhone = (phones)=>{
 
    
  }
+
+ const closeButton = ()=>{
+    const closeBtn = document.getElementById('close-btn');
+
+    closeBtn.style.display = 'none';
+    
+ }
+ 

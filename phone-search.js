@@ -33,11 +33,26 @@ const displayPhone = (phones)=>{
 }
 
  const detailsShow = (slugId) =>{
-     console.log (slugId)
-    // const url = `
-    // https://openapi.programming-hero.com/api/phone/${id}
-    // `;
-    // fetch(url)
-    // .then(res => res.json())
-    // .then( data => console.log(data))
+    const url = `
+    https://openapi.programming-hero.com/api/phone/${slugId}
+    `;
+    fetch(url)
+    .then(res => res.json())
+    .then( data => features(data.data))
+ }
+
+ const features = info =>{
+    //  console.log(info.releaseDate)
+   const collapseIdInfo = document.getElementById('collapse-id-info');
+   const collapseDiv = document.createElement('div');
+   collapseDiv.innerHTML=`
+   <div class="card card-body"  style="width: 300px;">
+   <p>${info.mainFeatures.storage},${info.mainFeatures.memory},${info.mainFeatures.displaySize},${info.mainFeatures.chipSet} </p>
+   <p> ${info.releaseDate}</p>
+
+ </div>
+   `
+   collapseIdInfo.appendChild(collapseDiv);
+   
+   
  }

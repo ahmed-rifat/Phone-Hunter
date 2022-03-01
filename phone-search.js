@@ -21,14 +21,23 @@ const displayPhone = (phones)=>{
                 <h5 class="card-title">Name: ${phone.phone_name}</h5>
                 <p class="card-title"> Brand: ${phone.brand}<p>
                 <p class="card-title"> Model: ${phone.slug}<p>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button onclick="detailsShow('${phone.slug}')" class="btn btn-success" >Specification</button>
+
                 </div>
               </div>
         </div>
         
         `
-        phoneListContainer.appendChild(div);
-
-        
+        phoneListContainer.appendChild(div);     
     }
 }
+
+ const detailsShow = (slugId) =>{
+     console.log (slugId)
+    // const url = `
+    // https://openapi.programming-hero.com/api/phone/${id}
+    // `;
+    // fetch(url)
+    // .then(res => res.json())
+    // .then( data => console.log(data))
+ }

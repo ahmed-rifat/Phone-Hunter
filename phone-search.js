@@ -1,24 +1,19 @@
 const loadPhone= () =>{
     document.getElementById('phone-list-container').innerHTML="";
     const inputValue = document.getElementById('inputValue').value;
-    if(inputValue != "oppo" && inputValue != "iphone" && inputValue != "huawei"){
-        alert('Phone not found');
-    } else{
+    
     const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`;
     fetch(url)
     .then(res => res.json())
     .then(data => displayPhone(data.data));
-  
-    // inputValue.data.slice(0,19);
-    // if(inputValue==data){
-    //     alert('phone not found');
-   
-       }
     
-
 }
 
+
 const displayPhone = (phones)=>{
+    if(phones == ""){
+        alert('phone not found');
+    }
     const slice =phones.slice(0,20);
     for (const phone of slice){
         const phoneListContainer = document.getElementById('phone-list-container');
@@ -61,7 +56,11 @@ const displayPhone = (phones)=>{
    <div class="card card-body" id="close-btn" style="width: 300px;">
    <p>${info.mainFeatures.storage},${info.mainFeatures.memory},${info.mainFeatures.displaySize},${info.mainFeatures.chipSet} </p>
    <p>Sensor: ${info.mainFeatures.sensors}</p>
-   <p> Others: ${info.others.WLAN},${info.others.Bluetooth},${info.others.GPS},${info.others.USB}</p>
+   <p> Others: ${info.others?.WLAN ? info.others?.WLAN:'No data'},
+   ${info.others ?.Bluetooth ? info.others?.Bluetooth:'No data'},
+   ${info.others?.GPS ? info.others?.GPS:'No data'},
+   ${info.others?.USB ? info.others?.USB:'No data'}
+   </p>
    <p> ${info.releaseDate ? info.releaseDate:'Coming soon' }</p>
  
  <button onclick ="closeButton()" type="button" class="btn btn-secondary" id="close-btn">Close</button>
